@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React from "react"
 import { SceneProps } from "../../App.interface"
 
 const Thumbnail = ({
@@ -7,17 +7,14 @@ const Thumbnail = ({
   setImgIndex,
 }: {
   data: SceneProps[]
-  setImg: Dispatch<SetStateAction<{ src: string; srcSet: string }>>
-  setImgIndex: Dispatch<SetStateAction<number>>
+  setImg: (src: string, srcSet: string) => void
+  setImgIndex: (index: number) => void
 }): JSX.Element => {
   const dataIsNotEmpty = Array.isArray(data) && data.length > 0
 
   const handleClick = (index: number, imgUrl: string, imgSrcSet: string) => {
     setImgIndex(index)
-    setImg({
-      src: imgUrl,
-      srcSet: imgSrcSet,
-    })
+    setImg(imgUrl, imgSrcSet)
   }
 
   return (

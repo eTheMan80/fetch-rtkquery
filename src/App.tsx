@@ -1,23 +1,40 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useReducer } from "react"
 import "./App.css"
 import Dropdown from "./components/Dropdown"
 import SceneImage from "./components/SceneImage"
 import { useGetDataQuery } from "./dataApiService"
+import { initialState, reducer } from "./reducer"
 
 export default function App() {
-  const [img, setImg] = useState<{ src: string; srcSet: string }>({
-    src: "",
-    srcSet: "",
-  })
-  const [imgIndex, setImgIndex] = useState<number>(0)
+  const [{ img, imgIndex }, dispatch] = useReducer(reducer, initialState)
   const { isLoading, isError, data: scene } = useGetDataQuery(null)
   const imgData = scene ?? []
 
+  const updateImgObj = (src: string, srcSet: string) => {
+    dispatch({
+      type: "updateImg",
+      payload: {
+        src,
+        srcSet,
+      },
+    })
+  }
+
+  const updateImgIndex = (index: number) => {
+    dispatch({
+      type: "updateImgIndex",
+      payload: index,
+    })
+  }
+
   useEffect(() => {
     if (scene) {
-      setImg({
-        src: imgData[0].nakedEyeImage.responsiveImage.src,
-        srcSet: imgData[0].nakedEyeImage.responsiveImage.srcSet,
+      dispatch({
+        type: "updateImg",
+        payload: {
+          src: imgData[0].nakedEyeImage.responsiveImage.src,
+          srcSet: imgData[0].nakedEyeImage.responsiveImage.srcSet,
+        },
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,8 +67,12 @@ export default function App() {
   return (
     <div id="app" className="App pt-5 pb-5">
       <div className="wrapper flex flex-row justify-center columns-2 overflow-hidden h-screen">
-        <Dropdown data={scene} index={imgIndex} setImg={setImg} />
-        <SceneImage setImg={setImg} img={img} setImgIndex={setImgIndex} />
+        <Dropdown data={scene} index={imgIndex} setImg={updateImgObj} />
+        <SceneImage
+          setImg={updateImgObj}
+          img={img}
+          setImgIndex={updateImgIndex}
+        />
       </div>
     </div>
   )

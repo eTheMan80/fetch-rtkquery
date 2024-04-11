@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
+import React, { ChangeEvent, useState } from "react"
 import Thumbnail from "../Thumbnail"
 import { useGetDataQuery } from "../../dataApiService"
 
@@ -7,9 +7,9 @@ const SceneImage = ({
   img,
   setImgIndex,
 }: {
-  setImg: Dispatch<SetStateAction<{ src: string; srcSet: string }>>
+  setImg: (src: string, srcSet: string) => void
   img: { src: string; srcSet: string }
-  setImgIndex: Dispatch<SetStateAction<number>>
+  setImgIndex: (index: number) => void
 }): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>("50")
   let { data: imgData } = useGetDataQuery(null)

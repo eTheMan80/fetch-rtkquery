@@ -58,3 +58,7 @@ export interface SceneProps {
 export interface Scene {
   data: SceneProps[] | null
 }
+
+export interface ImageStateProps {
+  src: string; srcSet: string
+}

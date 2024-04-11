@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, Fragment, SetStateAction } from "react"
+import React, { ChangeEvent, Fragment } from "react"
 import { SceneProps, SceneImages } from "../../App.interface"
 
 const Dropdown = ({
@@ -8,16 +8,13 @@ const Dropdown = ({
 }: {
   data: SceneProps[] | undefined
   index: number
-  setImg: Dispatch<SetStateAction<{ src: string; srcSet: string }>>
+  setImg: (src: string, srcSet: string) => void
 }): JSX.Element => {
   const imgsArray = data && Object.values(data[index].sceneImages)
   const dataIsNotEmpty = Array.isArray(imgsArray) && imgsArray.length > 0
   const updateImgUrl = (obj: false | SceneImages | undefined) => {
     if (!obj) return
-    setImg({
-      src: obj.image.responsiveImage.src,
-      srcSet: obj.image.responsiveImage.srcSet,
-    })
+    setImg(obj.image.responsiveImage.src, obj.image.responsiveImage.srcSet)
     return obj
   }
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
