@@ -2,10 +2,11 @@ import React, { useEffect, useReducer } from "react"
 import "./App.css"
 import Dropdown from "./components/Dropdown"
 import SceneImage from "./components/SceneImage"
+import ErrorBoundary from "./components/ErrorBoundary"
 import { useGetDataQuery } from "./dataApiService"
 import { initialState, reducer } from "./reducer"
 
-export default function App() {
+function App() {
   const [{ img, imgIndex }, dispatch] = useReducer(reducer, initialState)
   const { isLoading, isError, data: scene } = useGetDataQuery(null)
   const imgData = scene ?? []
@@ -75,5 +76,13 @@ export default function App() {
         />
       </div>
     </div>
+  )
+}
+
+export default function AppErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   )
 }
