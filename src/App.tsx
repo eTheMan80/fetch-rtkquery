@@ -8,7 +8,7 @@ import { initialState, reducer } from "./reducer"
 
 function App() {
   const [{ img, imgIndex }, dispatch] = useReducer(reducer, initialState)
-  const { isLoading, isError, data: scene } = useGetDataQuery(null)
+  const { isLoading, error, data: scene } = useGetDataQuery(null)
   const imgData = scene ?? []
 
   const updateImgObj = (src: string, srcSet: string) => {
@@ -41,6 +41,12 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene])
 
+  useEffect(() => {
+    if (error) {
+      throw new Error("Failed to load data!!")
+    }
+  }, [error])
+
   if (isLoading) {
     return (
       <div
@@ -52,19 +58,6 @@ function App() {
     )
   }
 
-  if (isError) {
-    return (
-      <div
-        data-testid="data-error"
-        className="w-screen h-screen flex flex-col justify-center items-center text-center text-3xl"
-      >
-        <span>
-          We haven&lsquo;t been able to load your information at this time.
-        </span>
-        <span>Please contact customer support to assist with this issue.</span>
-      </div>
-    )
-  }
   return (
     <div id="app" className="App pt-5 pb-5">
       <div className="wrapper flex flex-row justify-center columns-2 overflow-hidden h-screen">
