@@ -1,4 +1,4 @@
-import { SceneProps } from "./App.interface"
+import { SceneProps } from "../../../App.interface"
 
 export const imgDataArray: SceneProps[] = [
   {

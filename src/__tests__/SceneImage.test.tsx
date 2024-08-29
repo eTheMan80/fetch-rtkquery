@@ -1,7 +1,7 @@
 import { expect, test } from "vitest"
 import { render } from "@testing-library/react"
 import { Provider } from "react-redux"
-import store from "../store"
+import store from "../services/store/store"
 import SceneImage from "../components/SceneImage"
 
 test("default image is display when component renders", async () => {

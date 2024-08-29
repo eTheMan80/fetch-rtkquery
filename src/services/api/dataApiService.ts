@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { SceneProps } from "./App.interface"
+import { SceneProps } from "../../App.interface"
 
 export const dataApi = createApi({
   reducerPath: "dataApi",

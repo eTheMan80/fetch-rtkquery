@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react"
 import Thumbnail from "../Thumbnail"
-import { useGetDataQuery } from "../../dataApiService"
+import { useGetDataQuery } from "../../services/api/dataApiService"
 
 const SceneImage = ({
   setImg,

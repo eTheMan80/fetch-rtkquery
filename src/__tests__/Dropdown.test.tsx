@@ -2,9 +2,9 @@ import { expect, test } from "vitest"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { Provider } from "react-redux"
-import store from "../store"
+import store from "../services/store/store"
 import Dropdown from "../components/Dropdown"
-import { imgDataArray } from "../mockData"
+import { imgDataArray } from "../services/api/data/mockData"
 
 test("user is able to select the first element from the dropdown", async () => {
   const user = userEvent.setup()

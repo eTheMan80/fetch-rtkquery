@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import dataFetch from './dataSlice'
-import { dataApi } from "./dataApiService"
+import { dataApi } from "../api/dataApiService"
 
 const store = configureStore({
   reducer: {

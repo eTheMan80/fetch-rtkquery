@@ -3,8 +3,8 @@ import "./App.css"
 import Dropdown from "./components/Dropdown"
 import SceneImage from "./components/SceneImage"
 import ErrorBoundary from "./components/ErrorBoundary"
-import { useGetDataQuery } from "./dataApiService"
-import { initialState, reducer } from "./reducer"
+import { useGetDataQuery } from "./services/api/dataApiService"
+import { initialState, reducer } from "./services/store/reducer"
 
 function App() {
   const [{ img, imgIndex }, dispatch] = useReducer(reducer, initialState)

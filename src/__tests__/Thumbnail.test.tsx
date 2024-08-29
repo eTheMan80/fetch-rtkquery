@@ -1,9 +1,9 @@
 import { expect, test } from "vitest"
 import { render } from "@testing-library/react"
 import { Provider } from "react-redux"
-import store from "../store"
+import store from "../services/store/store"
 import Thumbnail from "../components/Thumbnail"
-import { imgDataArray } from "../mockData"
+import { imgDataArray } from "../services/api/data/mockData"
 
 test("image thumbnails have been rendered", async () => {
   const thumbnail = render(

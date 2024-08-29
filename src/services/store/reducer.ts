@@ -1,11 +1,11 @@
-import { ImageStateProps } from "./App.interface"
+import { ImageStateProps } from "../../App.interface"
 
-type InitialState = {
+export type InitialState = {
   img: ImageStateProps,
   imgIndex: number
 }
 
-type ActionTypes = { type: 'updateImg', payload: ImageStateProps } | { type: 'updateImgIndex', payload: number }
+export type ActionTypes = { type: 'updateImg', payload: ImageStateProps } | { type: 'updateImgIndex', payload: number }
 
 export const initialState: InitialState = {
   img: {
